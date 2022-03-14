@@ -1,11 +1,18 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import {
+  createRouter,
+  createWebHashHistory,
+  createWebHistory,
+  RouteRecordRaw,
+} from "vue-router";
 import audioList from "../views/audioList.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "audioList",
-    component: audioList,
+    // component: audioList,
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/audioList.vue"),
   },
   {
     path: "/articleDetail",
@@ -19,7 +26,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 
